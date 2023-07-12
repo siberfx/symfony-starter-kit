@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 namespace App\Task\Console;
 
-use App\Mailer\Notification\UncompletedTasks\UncompletedTasksMessage;
-use App\Task\Query\Task\FindUncompletedTasksByUserId\FindUncompletedTasksByUserId;
-use App\Task\Query\Task\FindUncompletedTasksByUserId\FindUncompletedTasksByUserIdQuery;
-use App\User\SignUp\Query\FindAllUsers;
+use App\Task\Notification\SendUncompletedTaskToUserMessage;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -25,8 +22,6 @@ final class SendUncompletedTaskToUser extends Command
     use LockableTrait;
 
     public function __construct(
-        private readonly FindUncompletedTasksByUserId $findUncompletedTasksByUserId,
-        private readonly FindAllUsers $findAllUsers,
         private readonly LoggerInterface $logger,
         private readonly MessageBusInterface $messageBus,
     ) {
@@ -41,19 +36,7 @@ final class SendUncompletedTaskToUser extends Command
             return Command::SUCCESS;
         }
 
-        $users = ($this->findAllUsers)();
-        $emailSent = 0;
-        foreach ($users as $user) {
-            $uncompletedTasks = ($this->findUncompletedTasksByUserId)(new FindUncompletedTasksByUserIdQuery($user->id));
-            if ($uncompletedTasks === []) {
-                continue;
-            }
-
-            $this->messageBus->dispatch(new UncompletedTasksMessage($user->email, $uncompletedTasks));
-            ++$emailSent;
-        }
-
-        $this->logger->info("Отправлено {$emailSent} писем о невыполненных задачах");
+        $this->messageBus->dispatch(new SendUncompletedTaskToUserMessage());
 
         $this->release();
 
