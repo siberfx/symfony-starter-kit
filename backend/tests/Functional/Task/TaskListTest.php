@@ -36,9 +36,9 @@ final class TaskListTest extends ApiWebTestCase
         self::assertSame(2, $pagination[self::TOTAL]);
 
         foreach ($tasks as $task) {
-            self::assertNotNull($task['id']);
+            self::assertNotEmpty($task['id']);
             self::assertFalse($task['isCompleted']);
-            self::assertNotNull($task['taskName']);
+            self::assertNotEmpty($task['taskName']);
         }
     }
 

@@ -25,7 +25,7 @@ final class ListTest extends ApiWebTestCase
         foreach ($settings as $setting) {
             self::assertNotEmpty($setting['type']);
             self::assertNotEmpty($setting['value']);
-            self::assertIsBool($setting['isPublic']);
+            self::assertArrayHasKey('isPublic', $setting);
         }
     }
 

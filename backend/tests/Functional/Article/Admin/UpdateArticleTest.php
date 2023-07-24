@@ -98,6 +98,9 @@ final class UpdateArticleTest extends ApiWebTestCase
         self::assertAccessDenied($response);
     }
 
+    /**
+     * @param array<int|string> $body
+     */
     #[DataProvider('notValidRequestProvider')]
     #[TestDox('Неправильный запрос')]
     public function testBadRequest(array $body): void

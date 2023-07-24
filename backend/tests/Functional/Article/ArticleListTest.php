@@ -26,7 +26,16 @@ final class ArticleListTest extends ApiWebTestCase
         self::assertSuccessResponse($response);
 
         $responseData = self::jsonDecode($response->getContent());
+
+        /** @var array<int, array{
+         *     title: string,
+         *     alias: string,
+         *     body: string,
+         * }> $articles
+         */
         $articles = $responseData['data'];
+
+        /** @var array{total: int} $paginationResponse */
         $paginationResponse = $responseData['pagination'];
 
         self::assertCount(1, $articles);
