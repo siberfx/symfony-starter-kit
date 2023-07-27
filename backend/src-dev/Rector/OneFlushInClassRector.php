@@ -73,11 +73,6 @@ final class OneFlushInClassRector extends AbstractRector
         $hasChanged = false;
         $hasOneFlush = false;
 
-        /**
-         * @param Node $node
-         * @param bool $hasChanged
-         * @param bool $hasOneFlush
-         */
         $traverse = function (Node $node, bool &$hasChanged, bool &$hasOneFlush) use (&$traverse): void {
             /** @var Class_ $node */
             foreach ($node->stmts as $key => $stmt) {
