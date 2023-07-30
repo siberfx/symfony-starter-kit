@@ -42,6 +42,7 @@ final readonly class EntityClassGeneratorForModule
 
         /**
          * @psalm-suppress InvalidArgument
+         *
          * @phpstan-ignore-next-line
          */
         $useStatements = new UseStatementGenerator([

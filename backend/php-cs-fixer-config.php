@@ -41,6 +41,12 @@ return (new PhpCsFixer\Config())
         'binary_operator_spaces' => true,
         'ordered_imports' => true,
         'return_assignment' => false,
+        'phpdoc_to_comment' => [
+            'ignored_tags' => [
+                'psalm-suppress',
+                'var',
+            ],
+        ],
 
         'global_namespace_import' => ['import_classes' => true],
 

@@ -7,7 +7,6 @@
  * @var non-empty-string $class_name
  * @var non-empty-string $entity_repository
  */
-
 echo "<?php\n"; ?>
 
 declare(strict_types=1);

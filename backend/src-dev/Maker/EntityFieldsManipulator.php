@@ -75,7 +75,7 @@ final class EntityFieldsManipulator
     /**
      * @param array<int, array<string, string>> $fields
      *
-     * @return array<string, string|int|float|null>
+     * @return array<string, float|int|string|null>
      */
     public function getValuesWithType(array $fields): array
     {

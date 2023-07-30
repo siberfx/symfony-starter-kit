@@ -83,6 +83,7 @@ final class MakeModule extends AbstractMaker implements InputAwareMakerInterface
 
         $argument = $command->getDefinition()->getArgument('name');
         $question = $this->entityGenerator->createEntityClassQuestion($argument->getDescription());
+
         /** @var mixed $entityClassName */
         $entityClassName = $io->askQuestion($question);
 

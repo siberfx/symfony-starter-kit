@@ -85,6 +85,7 @@ final class CustomGenerator
 
         /** @var string $templatePath */
         $templatePath = $this->pendingOperations[$targetPath]['template'];
+
         /** @var array<string, mixed> $parameters */
         $parameters = $this->pendingOperations[$targetPath]['variables'];
 
@@ -165,6 +166,7 @@ final class CustomGenerator
             if (isset($templateData['contents'])) {
                 /** @var string $content */
                 $content = $templateData['contents'];
+
                 /**
                  * @psalm-suppress InternalMethod
                  */
