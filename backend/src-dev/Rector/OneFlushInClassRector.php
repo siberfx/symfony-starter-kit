@@ -73,8 +73,14 @@ final class OneFlushInClassRector extends AbstractRector
         $hasChanged = false;
         $hasOneFlush = false;
 
+        /** @var Class_ $node */
         $traverse = function (Node $node, bool &$hasChanged, bool &$hasOneFlush) use (&$traverse): void {
-            /** @var Class_ $node */
+            /**
+             * @psalm-suppress NoInterfaceProperties
+             * @psalm-suppress MixedAssignment
+             *
+             * @phpstan-ignore-next-line
+             */
             foreach ($node->stmts as $key => $stmt) {
                 if ($stmt instanceof Expression && ($stmt->expr instanceof FuncCall || $stmt->expr instanceof MethodCall)) {
                     $expr = $stmt->expr;
@@ -95,11 +101,18 @@ final class OneFlushInClassRector extends AbstractRector
                         }
 
                         $hasChanged = true;
+
+                        /**
+                         * @phpstan-ignore-next-line
+                         *
+                         * @psalm-suppress MixedArrayOffset
+                         * @psalm-suppress MixedArrayAccess
+                         */
                         unset($node->stmts[$key]);
                     }
                 }
 
-                // @var callable $traverse
+                /** @var callable $traverse */
                 $traverse($stmt, $hasChanged, $hasOneFlush);
             }
         };

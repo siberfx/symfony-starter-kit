@@ -44,6 +44,7 @@ return (new PhpCsFixer\Config())
         'phpdoc_to_comment' => [
             'ignored_tags' => [
                 'psalm-suppress',
+                'phpstan-ignore-next-line',
                 'var',
             ],
         ],

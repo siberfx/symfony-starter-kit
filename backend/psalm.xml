@@ -9,8 +9,7 @@
 >
     <projectFiles>
         <directory name="src" />
-        <directory name="src-dev/Maker" />
-        <directory name="src-dev/PHPCsFixer" />
+        <directory name="src-dev" />
         <directory name="tests" />
         <ignoreFiles>
             <directory name="vendor" />
@@ -37,9 +36,15 @@
 
         <InternalMethod>
             <errorLevel type="suppress">
-                <referencedMethod name="Symfony\Bundle\MakerBundle\Util\UseStatementGenerator::__construct" /> <!-- not supported for all types of errors -->
+                <referencedMethod name="Symfony\Bundle\MakerBundle\Util\UseStatementGenerator::__construct" />
             </errorLevel>
         </InternalMethod>
-        <PluginIssue name="IssueNameEmittedByPlugin" errorLevel="info" /> <!-- this is a special case to handle issues emitted by plugins -->
+
+        <UnusedVariable>
+            <errorLevel type="suppress">
+                <file name="src-dev/Rector/OneFlushInClassRector.php" />
+            </errorLevel>
+        </UnusedVariable>
+        <PluginIssue name="IssueNameEmittedByPlugin" errorLevel="info" />
     </issueHandlers>
 </psalm>

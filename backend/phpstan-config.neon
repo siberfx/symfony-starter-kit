@@ -6,8 +6,7 @@ parameters:
     tmpDir: ./var/cache/phpstan
     paths:
         - src
-        - src-dev/Maker
-        - src-dev/PHPCsFixer
+        - src-dev
         - tests
     excludePaths:
         - src-dev/Maker/Vendor/EntityGenerator.php
