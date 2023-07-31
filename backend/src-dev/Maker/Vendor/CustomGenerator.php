@@ -60,10 +60,7 @@ final class CustomGenerator
             throw new LogicException(sprintf('Could not determine where to locate the new class "%s", maybe try with a full namespace like "\\My\\Full\\Namespace\\%s"', $className, Str::getShortClassName($className)));
         }
 
-        $variables = array_merge($variables, [
-            'class_name' => Str::getShortClassName($className),
-            'namespace' => Str::getNamespace($className),
-        ]);
+        $variables = [...$variables, 'class_name' => Str::getShortClassName($className), 'namespace' => Str::getNamespace($className)];
 
         $this->addOperation($targetPath, $templateName, $variables);
 
@@ -92,9 +89,7 @@ final class CustomGenerator
         /**
          * @psalm-suppress InternalMethod
          */
-        $templateParameters = array_merge($parameters, [
-            'relative_path' => $this->fileManager->relativizePath($targetPath),
-        ]);
+        $templateParameters = [...$parameters, 'relative_path' => $this->fileManager->relativizePath($targetPath)];
 
         /**
          * @psalm-suppress InternalMethod

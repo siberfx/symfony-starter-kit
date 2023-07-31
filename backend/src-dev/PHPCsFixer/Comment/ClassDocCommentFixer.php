@@ -187,7 +187,7 @@ final class Sample
             }
         } while (!$tokens[$index]->isGivenKind([T_FINAL, T_ABSTRACT, T_INTERFACE, T_ENUM, T_TRAIT, T_CLASS]));
 
-        if ($isAttribute === true) {
+        if ($isAttribute) {
             return $index;
         }
 
